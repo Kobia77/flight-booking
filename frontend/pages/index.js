@@ -3,16 +3,20 @@ import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import FlightList from "../components/FlightList";
 import axios from "axios";
+require("dotenv").config();
 
 export default function Home() {
   const [flights, setFlights] = useState([]);
   const [error, setError] = useState("");
-
+  const baseURL = process.env.BACKEND_URL; //doesnt work somehow-need to check
   const searchFlights = async (searchParams) => {
     try {
-      const response = await axios.get("/api/flights", {
-        params: searchParams,
-      });
+      const response = await axios.get(
+        "http://localhost:3001/api/flights/search",
+        {
+          params: searchParams,
+        }
+      );
       setFlights(response.data);
       setError("");
     } catch (err) {

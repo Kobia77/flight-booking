@@ -21,7 +21,7 @@ const SearchForm = ({ onSearch }) => {
         placeholder="Origin"
         value={origin}
         onChange={(e) => setOrigin(e.target.value)}
-        className="p-2 border rounded-lg w-full md:w-1/4"
+        className="p-2 border rounded-lg text-black w-full md:w-1/4"
         required
       />
       <input
@@ -29,14 +29,14 @@ const SearchForm = ({ onSearch }) => {
         placeholder="Destination"
         value={destination}
         onChange={(e) => setDestination(e.target.value)}
-        className="p-2 border rounded-lg w-full md:w-1/4"
+        className="p-2 border rounded-lg text-black w-full md:w-1/4"
         required
       />
       <input
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="p-2 border rounded-lg w-full md:w-1/4"
+        className="p-2 border rounded-lg text-black w-full md:w-1/4"
         required
       />
       <button

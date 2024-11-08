@@ -1,5 +1,6 @@
 // index.js
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const flightsRoute = require("./routes/flights");
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
-
+app.use(cors());
 // Routes
 app.use("/api/flights", flightsRoute);
 

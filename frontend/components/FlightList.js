@@ -6,7 +6,7 @@ const FlightList = ({ flights }) => {
         flights.map((flight) => (
           <div
             key={flight.id}
-            className="p-4 border rounded-lg bg-white shadow-sm"
+            className="p-4 border rounded-lg bg-white text-black shadow-sm"
           >
             <h3 className="text-xl font-semibold">{flight.airline}</h3>
             <p>
