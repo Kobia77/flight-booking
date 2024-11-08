@@ -9,7 +9,7 @@ dotenv.config();
 //   "mongodb+srv://flightsdb:Flights1234@flight-booking.ddp0d.mongodb.net/";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
