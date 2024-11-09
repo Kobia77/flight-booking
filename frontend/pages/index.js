@@ -9,6 +9,7 @@ export default function Home() {
   const [flights, setFlights] = useState([]);
   const [error, setError] = useState("");
   const baseURL = process.env.BACKEND_URL; //doesnt work somehow-need to check
+
   const searchFlights = async (searchParams) => {
     try {
       const response = await axios.get(
