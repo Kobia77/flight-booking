@@ -42,4 +42,49 @@ router.get("/search", async (req, res) => {
   }
 });
 
+// Route to update booked status by flight ID
+router.patch("/:id/book", async (req, res) => {
+  try {
+    const flightId = req.params.id;
+    const updatedFlight = await Flight.findByIdAndUpdate(
+      flightId,
+      { booked: true },
+      { new: true } // Return the updated document
+    );
+    if (!updatedFlight) {
+      return res.status(404).json({ error: "Flight not found" });
+    }
+    res.json(updatedFlight);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update flight booking status" });
+  }
+});
+
+// Route to cancel booked status by flight ID
+router.patch("/:id/cancel", async (req, res) => {
+  try {
+    const flightId = req.params.id;
+    const updatedFlight = await Flight.findByIdAndUpdate(
+      flightId,
+      { booked: false },
+      { new: true } // Return the updated document
+    );
+    if (!updatedFlight) {
+      return res.status(404).json({ error: "Flight not found" });
+    }
+    res.json(updatedFlight);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update flight booking status" });
+  }
+});
+
+// Get all booked flights
+router.get("/booked", async (req, res) => {
+  try {
+    const bookedFlights = await Flight.find({ booked: true });
+    res.status(200).json(bookedFlights);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch booked flights" });
+  }
+});
 module.exports = router;

@@ -7,7 +7,7 @@ const flightSchema = new mongoose.Schema({
   destination: { type: String, required: true },
   date: { type: Date, required: true },
   price: { type: Number, required: true },
-  booked: { type: Boolean, required: true },
+  booked: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Flight", flightSchema);
