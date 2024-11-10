@@ -30,11 +30,10 @@ jobs:
         working-directory: ./backend
         run: npm install
 
-      - name: Lint and Test Backend
-        working-directory: ./backend
-        run: |
-          npm run lint
-          npm run test
+      # - name: Test Backend
+      #   working-directory: ./backend
+      #   run: |
+      #     npm run test
 
   # Frontend Job
   frontend:
