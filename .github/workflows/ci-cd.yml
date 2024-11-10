@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Docker image
         working-directory: ./backend
-        run: docker build -t flight-booking-backend .
+        run: docker-compose up --build
 
   frontend:
     runs-on: ubuntu-latest
