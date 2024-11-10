@@ -30,8 +30,8 @@ router.get("/search", async (req, res) => {
 
   try {
     const query = {
-      ...(origin && { origin }),
-      ...(destination && { destination }),
+      ...(origin && { origin: new RegExp(`^${origin}$`, "i") }), // Case-insensitive regex
+      ...(destination && { destination: new RegExp(`^${destination}$`, "i") }), // Case-insensitive regex
       ...(date && { date: new Date(date) }),
     };
 
