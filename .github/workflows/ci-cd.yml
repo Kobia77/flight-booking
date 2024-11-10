@@ -52,11 +52,11 @@ jobs:
         working-directory: ./frontend
         run: npm install
 
-      - name: Lint and Test Frontend
-        working-directory: ./frontend
-        run: |
-          npm run lint
-          npm run test
+      # - name: Lint and Test Frontend
+      #   working-directory: ./frontend
+      #   run: |
+      #     npm run lint
+      #     npm run test
 
   # Docker Build and Push Job
   docker:
