@@ -17,10 +17,13 @@ const FlightList = ({ flights, onBook }) => {
           return (
             <div
               key={flight.id}
+              data-cy="flight-card"
               className="p-4 border rounded-lg bg-white text-black shadow-sm flex justify-between items-center"
             >
               <div>
-                <h3 className="text-xl font-semibold">{flight.airline}</h3>
+                <h3 data-cy="flight-airline" className="text-xl font-semibold">
+                  {flight.airline}
+                </h3>
                 <p>
                   From: {flight.origin} - To: {flight.destination}
                 </p>

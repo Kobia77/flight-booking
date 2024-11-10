@@ -5,11 +5,14 @@ const BookedFlights = ({ flights, onBook }) => {
       {flights.length ? (
         flights.map((flight) => (
           <div
+            data-cy="flight-card"
             key={flight.id}
             className="p-4 border rounded-lg bg-white text-black shadow-sm flex justify-between items-center"
           >
             <div>
-              <h3 className="text-xl font-semibold">{flight.airline}</h3>
+              <h3 data-cy="flight-airline" className="text-xl font-semibold">
+                {flight.airline}
+              </h3>
               <p>
                 From: {flight.origin} - To: {flight.destination}
               </p>
@@ -24,7 +27,7 @@ const BookedFlights = ({ flights, onBook }) => {
           </div>
         ))
       ) : (
-        <p className="text-center text-gray-500">
+        <p data-cy="no-flights-message" className="text-center text-gray-500">
           No flights found. Please search.
         </p>
       )}
