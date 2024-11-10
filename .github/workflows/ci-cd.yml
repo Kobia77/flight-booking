@@ -10,7 +10,7 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     services:
@@ -47,14 +47,14 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
-      # Step 5: Cleanup previous containers (stop and remove existing containers)
+      # Step 5: Cleanup previous containers
       - name: Cleanup previous containers
         run: |
           docker-compose down || true
           docker ps -a -q | xargs docker stop || true
           docker ps -a -q | xargs docker rm || true
 
-      # Step 6: Set up Docker Buildx (to use Docker compose)
+      # Step 6: Set up Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -66,41 +66,28 @@ jobs:
         env:
           MONGO_URI: ${{ secrets.MONGO_URI }}
 
-      # Step 8: Install frontend dependencies (optional if frontend testing is needed)
+      # Step 8: Install frontend dependencies
       - name: Install frontend dependencies
         working-directory: ./frontend
         run: npm install
 
-      # Step 9: Start frontend server in the background (optional if frontend is part of the test)
+      # Step 9: Start frontend server in the background
       - name: Start frontend server
         working-directory: ./frontend
         run: npm start &
+        env:
+          NEXT_PUBLIC_BACKEND_URL: http://localhost:3001
 
-      # Step 10: Wait for frontend server to be fully ready (optional, 20 seconds or more)
+      # Step 10: Wait for frontend server to be fully ready
       - name: Wait for frontend server to be ready
-        run: sleep 5
+        run: npx wait-on http://localhost:3000
 
-      # # Step 11: Run backend tests
-      # - name: Run Backend Tests
-      #   working-directory: ./flight-booking-backend
-      #   run: npm test
-      #   env:
-      #     MONGO_URI: mongodb://localhost:27017/flightbooking
-
-      # Step 12: Run Cypress tests (frontend testing)
+      # Step 11: Run Cypress tests
       - name: Run Cypress Tests
         working-directory: ./frontend
         run: npx cypress run
 
-      # # Step 13: Upload Cypress Test Results (optional)
-      # - name: Upload Cypress Test Results
-      #   if: always()
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: cypress-results
-      #     path: ./flight-booking-frontend/cypress/videos
-
-      # Step 14: Tear down Docker services
+      # Step 12: Tear Down Docker Compose
       - name: Tear Down Docker Compose
-        working-directory: ./flight-booking-backend
+        working-directory: ./backend
         run: docker-compose down
