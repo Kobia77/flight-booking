@@ -7,7 +7,7 @@ describe("Flight Booking", () => {
     cy.get('input[type="date"]').type("2024-11-20");
 
     cy.contains("Search Flights").click();
-    cy.contains("kobi").should("exist");
+    cy.contains("SkyLine").should("exist");
     cy.contains("Book Now").first().click();
     cy.contains("Booked").should("exist");
   });
