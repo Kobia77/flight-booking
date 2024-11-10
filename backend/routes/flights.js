@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 });
 
 // Route to search for flights based on origin, destination, and date
-app.get("/api/flights/search", async (req, res) => {
+router.get("/search", async (req, res) => {
   const { origin, destination, date } = req.query;
 
   try {
@@ -38,7 +38,7 @@ app.get("/api/flights/search", async (req, res) => {
     const flights = await Flight.find(query);
     res.status(200).json(flights);
   } catch (err) {
-    res.status(500).json({ error: "Failed to fetch flights" });
+    res.status(500).json({ error: "Failed to search flights" });
   }
 });
 
