@@ -9,9 +9,9 @@ describe("Search Flight", () => {
     cy.contains("Search Flights").click();
     cy.get("[data-cy=flight-card]").each(($card) => {
       cy.wrap($card).within(() => {
-        cy.contains("Rome");
-        cy.contains("Madrid");
-        cy.contains("9/10/2024");
+        cy.contains("Rome").should("exist");
+        cy.contains("Madrid").should("exist");
+        cy.contains("9/10/2024").should("exist");
       });
     });
   });
