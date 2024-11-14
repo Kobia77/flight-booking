@@ -1,54 +1,85 @@
 
-Flight Booking System
+# Flight Booking System
 
 ### Overview
 The **Flight Booking System** is a full-stack application designed for searching, booking, viewing, and canceling flights. It uses **Next.js** for the frontend, **Express** for the backend, and **MongoDB** for data storage.
 
 ---
 
+### Prerequisites
+To run this project, ensure the following tools are installed:
+
+- Docker Desktop
+- Node.js
+- Git
+
+---
+
 ### Setup
 
 #### 1. Clone the Repository
-``` git clone <repository-url>```
-cd flight-booking
+```git clone https://github.com/Kobia77/flight-booking.git```
 
 #### 2. Install Dependencies
 
 - **Backend**:  
   Navigate to the `backend` directory and run:
-  cd backend
-  npm install
+  ```cd backend```
+  ```npm install```
 
 - **Frontend**:  
   Navigate to the `frontend` directory and run:
-  cd ../frontend
-  npm install
+  ```cd frontend```
+  ```npm install```
 
 #### 3. Environment Variables
 Create `.env` files in both `backend` and `frontend` directories with the following configurations:
 
 - **Backend `.env`**
-  MONGO_URI="your-mongo-uri-here"
+  
+  ```
+  MONGO_URI="mongodb+srv://flightsdb:Flights1234@flight-booking.ddp0d.mongodb.net/"
   PORT=3001
-
-- **Frontend `.env`**
-  NEXT_PUBLIC_BACKEND_URL="http://localhost:3001"
-
+- **Frontend `.env.local`**
+    
+  ```
+  BACKEND_URL=http://localhost:3001
 ---
 
 ### Running the Application
 
 #### Backend (with Docker Compose)
 To start the backend and MongoDB, use Docker Compose:
+```
 cd backend
 docker-compose up --build
-
+```
 #### Frontend
 To start the frontend development server:
-cd ../frontend
+```
+cd frontend
 npm run dev
+```
+
+Open `http://localhost:3000` in a browser.
 
 ---
+
+### Testing the Application
+After both frontend and backend are running, open http://localhost:3000 in a browser. You can search for flights, book them, and cancel them.
+#### Run the tests manually
+Go to the frontend folder: `cd frontend`.
+
+run the command `npx cypress open` to see the tests visually or `npx cypress run` to see the tests only in the terminal. 
+
+---
+
+### CI/CD Pipeline
+This project uses GitHub Actions for continuous integration and deployment. The pipeline:
+
+- Runs on each push or pull request to the main branch.
+- Builds and runs the backend and frontend containers.
+- Executes Cypress end-to-end tests.
 
 ### Sample Flight Data
 
@@ -67,6 +98,10 @@ Here is sample JSON data for flights that exists in our DB:
   { "airline": "EastJet", "origin": "Beijing", "destination": "Seoul", "date": "2024-06-18", "price": 480}
 ]
 ```
+
+You can use them to search a flight and book it. after booking you will be able to see it in the booked flight page.
+Also the titles in each page always leads you to the main page.
+
 ---
 
 ### License
