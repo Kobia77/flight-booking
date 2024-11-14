@@ -6,18 +6,10 @@ The **Flight Booking System** is a full-stack application designed for searching
 
 ---
 
-### Project Structure
-flight-booking/
-├── backend/
-├── frontend/
-└── README.md
-
----
-
 ### Setup
 
 #### 1. Clone the Repository
-git clone <repository-url>
+``` git clone <repository-url>```
 cd flight-booking
 
 #### 2. Install Dependencies
